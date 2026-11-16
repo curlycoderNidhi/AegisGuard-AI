@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ShieldAlert, ShieldCheck, Mail, AlertTriangle, Send } from 'lucide-react';
 
+// Render પર ડિપ્લોય કરેલી બેકએન્ડ લિંક અહીં સેટ કરી છે
+const API_BASE_URL = "https://aegisguard-ai.onrender.com";
 
 export default function App() {
   const [sender, setSender] = useState('');
@@ -17,7 +19,8 @@ export default function App() {
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/analyze/email', {
+      // localhost ની જગ્યાએ API_BASE_URL વાપરીએ છીએ
+      const response = await fetch(`${API_BASE_URL}/api/v1/analyze/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sender, subject, body }),
